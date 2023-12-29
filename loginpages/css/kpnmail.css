@@ -1,0 +1,491 @@
+* {
+   box-sizing: border-box;
+}
+
+html {
+   overflow-y: scroll;
+}
+
+html, body {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   background: url("../images/kpnmail/foto_bg_webmail.jpg") no-repeat fixed;
+   background-size: cover;
+   color: #333;
+   font-family: KPN-Sans, Arial;
+   font-size: 14px;
+}
+
+a img {
+   border: 0;
+}
+
+#wrapper {
+   margin: 0 auto;
+   max-width: 100%;
+   padding: 0px 15px 50px;
+   width: 1170px;
+}
+
+header {
+   margin-top: 40px;
+}
+
+.row::after {
+   clear: both;
+   content: " ";
+   display: table;
+}
+
+.row > * {
+   float: left;
+   padding: 0 15px;
+   position: relative;
+}
+
+#logo {
+   width: 25%;
+}
+
+   #logo a {
+      color: #FFF;
+      font-size: 48px;
+      text-decoration: none;
+   }
+
+.kpn-logo {
+   background: url("../images/kpnmail/kpn_logo.svg") no-repeat scroll;
+   height: 66px;
+   width: 145px;
+}
+
+#title {
+   text-shadow: 0 0 5px rgba(255, 255, 255, .5);
+   width: 41.6667%;
+}
+
+h1, h2, h3, h4, input {
+   font-family: KPN-Accent, Arial;
+}
+
+h1 {
+   font-size: 30px;
+   font-weight: 200;
+   line-height: 1.1;
+   margin: 20px 0 0;
+}
+
+#main {
+   left: 25%;
+   margin-top: 20px;
+   width: 41.6667%;
+}
+
+   #main > div {
+      background: #FFF;
+      border: 1px solid #CCC;
+      box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+      padding: 15px;
+      position: relative;
+   }
+
+#login.disabled, #login.loading {
+   cursor: default;
+   opacity: .25;
+   pointer-events: none;
+}
+
+.spinner {
+   animation: spin linear 1s infinite;
+   border: 4px solid transparent;
+   border-top-color: #090;
+   border-radius: 100%;
+   display: none;
+   height: 40px;
+   left: 50%;
+   margin-left: -20px;
+   position: absolute;
+   top: 100px;
+   width: 40px;
+}
+
+@keyframes spin {
+   from {
+      transform: rotate(0deg);
+   }
+
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+#login.loading ~ .spinner {
+   display: block;
+}
+
+.form-input {
+   position: relative;
+}
+
+input:-webkit-autofill::first-line {
+   font-family: KPN-Sans, Arial;
+   font-size: 14px;
+}
+
+input[type="text"], input[type="password"] {
+   background: transparent;
+   border: 1px solid #B3B3B3;
+   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+   color: inherit;
+   font-family: KPN-Sans, Arial;
+   font-size: 14px;
+   height: 45px;
+   margin-bottom: 15px;
+   padding: 6px 12px;
+   position: relative;
+   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+   width: 100%;
+   z-index: 10;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+   border: 1px solid #66AFE9;
+   box-shadow: 0 0 4px #66AFE9;
+}
+
+noscript {
+   color: #F00;
+}
+
+.error-message {
+   display: none;
+   color: #F00;
+   padding: 0 15px 15px;
+}
+
+   .error-message a {
+      color: #F00;
+   }
+
+   noscript::before, .error-message::before {
+      font-family: "Icomoon";
+      font-size: 12px;
+      color: #F00;
+      content: "\e608";
+      padding-right: 10px;
+   }
+
+.invalid > input {
+   border: 1px solid #F00;
+   box-shadow: 0 0 4px #F00;
+}
+
+.invalid-required > .error-required,
+.invalid-pattern > .error-pattern,
+.invalid-credentials > .error-credentials {
+   display: block;
+}
+
+#emailaddress {
+   border: 1px solid transparent;
+   box-shadow: none;
+   color: #999;
+   height: 45px;
+   left: 12px;
+   line-height: 2rem;
+   overflow: hidden;
+   padding: 6px 0;
+   position: absolute;
+   right: 12px;
+   top: 0;
+   z-index: 5;
+}
+
+#emailaddress .usernamepart {
+   color: transparent;
+}
+
+input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #999;
+   font-family: KPN-Sans, Arial;
+}
+
+::placeholder {
+   color: #999;
+}
+
+input[type="submit"] {
+   background-color: #09F;
+   border: 0;
+   border-radius: 4px;
+   color: #FFF;
+   cursor: pointer;
+   font-size: 16px;
+   margin: 30px 0;
+   padding: 10px 30px;
+   transition: all 0s ease 0s, all 0.2s ease 0s, all 0s ease-in-out 0s;
+   width: 100%;
+}
+
+   input[type="submit"]:hover {
+      background-color: #0d76bc;
+   }
+
+#links ul {
+   margin: 0;
+   padding: 0;
+   width: 100%;
+}
+
+   #links ul li {
+      list-style-type: none;
+      margin: 10px 0;
+   }
+
+      #links ul li a {
+         color: inherit;
+         text-decoration: none;
+      }
+
+         #links ul li a:hover {
+            color: #09F;
+         }
+
+         #links ul li a::before {
+            content: "\e62d";
+            font-family: Icomoon;
+            margin-top: 10px;
+            padding-right: 5px;
+         }
+
+   #links ul.links-right li {
+      text-align: right;
+   }
+
+#banner a {
+   border-top: 1px solid #CCC;
+   margin-top: 15px;
+   padding: 15px 0 0;
+   width: 100%;
+}
+
+   #banner a img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+   }
+
+a#specials {
+   display: none;
+}
+
+@font-face {
+   font-family: 'icomoon';
+   src: url("../fonts/kpnmail/Icomoon/icomoon.eot");
+   src: url("../fonts/kpnmail/Icomoon/icomoon.eot?#iefix") format("embedded-opentype"), url("../fonts/kpnmail/Icomoon/icomoon.woff") format("woff"), url("../fonts/kpnmail/Icomoon/icomoon.ttf") format("truetype"), url("../fonts/kpnmail/Icomoon/icomoon.svg?#icomoon") format("svg");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'KPN-Accent';
+   src: url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Bold.eot");
+   src: url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Bold.woff") format("woff"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Bold.ttf") format("truetype"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Bold.svg#ea9771cd341fae3bf8dc1fcb3d048989") format("svg");
+   font-style: normal;
+   font-weight: 700;
+}
+
+@font-face {
+   font-family: 'KPN-Accent';
+   src: url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Light.eot");
+   src: url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Light.woff") format("woff"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Light.ttf") format("truetype"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Light.svg#1b31c318d956d41420f5cc1b9d996162") format("svg");
+   font-style: normal;
+   font-weight: 200;
+}
+
+@font-face {
+   font-family: 'KPN-Accent';
+   src: url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Normal.eot");
+   src: url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Normal.eot?#iefix") format("embedded-opentype"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Normal.woff") format("woff"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Normal.ttf") format("truetype"), url("../fonts/kpnmail/KPN-Accent/KPN-Accent-Normal.svg#5b748be837e0ca1fb7379560f8954dd0") format("svg");
+   font-style: normal;
+   font-weight: 400;
+}
+
+@font-face {
+   font-family: 'KPN-Sans';
+   src: url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Bold.eot");
+   src: url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Bold.woff") format("woff"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Bold.ttf") format("truetype"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Bold.svg#f831c2393882ea0c75b260378c4c9d2b") format("svg");
+   font-style: normal;
+   font-weight: 700;
+}
+
+@font-face {
+   font-family: 'KPN-Sans';
+   src: url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Light.eot");
+   src: url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Light.woff") format("woff"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Light.ttf") format("truetype"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Light.svg#b6df28015c699f166215fd935180c4fe") format("svg");
+   font-style: normal;
+   font-weight: 200;
+}
+
+@font-face {
+   font-family: 'KPN-Sans';
+   src: url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Normal.eot");
+   src: url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Normal.eot?#iefix") format("embedded-opentype"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Normal.woff") format("woff"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Normal.ttf") format("truetype"), url("../fonts/kpnmail/KPN-Sans/KPN-Sans-Normal.svg#f50ce58d435f289016bfb0fc8c8cbc09") format("svg");
+   font-style: normal;
+   font-weight: 400;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+   -webkit-box-shadow: 0 0 0 50px transparent inset !important;
+   -webkit-box-shadow: 0 0 0 50px rgba(0, 0, 0, 0) inset !important;
+   transition: background-color 6000s ease-in-out 6000s;
+}
+
+/* NEW WEBMAIL POPUP */
+
+.notification-message {
+   background-color: #C2E1F5;
+   display: flex;
+   line-height: 1.5em;
+   margin-bottom: 1em;
+   padding: 1em;
+   position: relative;
+   text-decoration: none;
+   width: 100%;
+}
+
+   .notification-message a {
+      color: #09f;
+      text-decoration: none;
+   }
+
+      .notification-message a:hover, .notification-message a:focus {
+         color: #07c;
+         text-decoration: underline;
+      }
+
+.notification-icon {
+   background: transparent url(../images/kpnmail/kpn-notifications.svg);
+   background-size: cover;
+   background-position: -44px 0;
+   height: 22px;
+   margin-right: 10px;
+   min-width: 22px;
+}
+
+.popup-container {
+   background-color: rgba(0, 0, 0, .25);
+   bottom: 0;
+   display: none;
+   left: 0;
+   padding-top: 100px;
+   position: fixed;
+   right: 0;
+   top: 0;
+   z-index: 100;
+}
+
+   .popup-container:target {
+      display: block;
+   }
+
+.popup-window {
+   animation: slide-top .5s;
+   background-color: #FFF;
+   border: 1px solid #CCC;
+   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+   margin: 0 auto;
+   max-width: 100%;
+   padding: 40px;
+   position: relative;
+   width: 800px;
+}
+
+.close-icon {
+   color: #000;
+   font-size: 1.5em;
+   position: absolute;
+   right: 40px;
+   text-decoration: none;
+   top: 40px;
+}
+
+   .close-icon:focus, .close-icon:hover {
+      color: #09F;
+   }
+
+   .close-icon::before {
+      content: '\e608';
+      font-family: 'Icomoon';
+   }
+
+@keyframes slide-top {
+   0% {
+      top: -420px;
+      opacity: 0;
+   }
+
+   100% {
+      top: 0;
+      opacity: 1;
+   }
+}
+
+/* MAINTENANCE */
+
+.maintenance-message {
+   background: url(../images/kpnmail/service-assemble.svg);
+   background-repeat: no-repeat;
+   background-position-x: 10px;
+   padding: 0 0 0 130px;
+}
+
+   .maintenance-message h1, .maintenance-message h4 {
+      color: #090;
+   }
+
+/* TABLET & MOBILE */
+
+@media (max-width: 991px) {
+   body {
+      background: url("../images/kpnmail/bg.png") no-repeat fixed;
+      background-size: 100% 100%;
+   }
+
+   #logo {
+      float: right;
+      top: 10px;
+   }
+
+   .kpn-logo {
+      background: none;
+      float: right;
+      text-align: right;
+   }
+
+      .kpn-logo::after {
+         content: "\e612";
+         font-family: Icomoon;
+      }
+
+   #title {
+      color: #FFF;
+      text-shadow: none;
+   }
+
+   #main {
+      left: auto;
+      width: 100%;
+   }
+
+   .maintenance-message {
+      background-position-x: 50%;
+      padding: 100px 0 0 0;
+   }
+}
